@@ -24,7 +24,7 @@ services:
       - MODULE=book-flight-module.xml
       - BROWSER=chrome
     volumes:
-      - ./output/book-result:usr/share/udemy/test-output
+      - ./output/book-result:/usr/share/udemy/test-output
     depends_on:
       - chrome
       - firefox
