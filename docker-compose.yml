@@ -1,0 +1,28 @@
+version: "3"
+services:
+  hub:
+    image: selenium/hub
+    ports:
+      - "4444:4444"
+  chrome:
+    image: selenium/node-chrome-debug
+    environment:
+      - HUB_HOST=hub
+    depends_on:
+      - hub
+  firefox:
+    image: selenium/node-firefox
+    shm_size: '1gb'
+    environment:
+      - HUB_HOST=hub
+    depends_on:
+      - hub
+  book-flight:
+    image: ashwinkarangutkar/dockerselenium
+    environment:
+      - HUB_HOST=hub
+      - MODULE=book-flight-module.xml
+      - BROWSER=chrome
+    depends_on:
+      - chrome
+      - firefox
